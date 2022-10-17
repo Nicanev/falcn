@@ -1,0 +1,104 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  font-weight: normal;
+}
+
+html {
+    font-size: 0.520835vw;
+    line-height: 1.2;
+    overflow-y: hidden;
+}
+
+.wrapper {
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+body {
+    font-family: 'Blender Pro', sans-serif;
+    color: white;
+}
+
+body {
+    background: linear-gradient(149.2deg, #2B080E 0%, #000000 49.67%);
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+  
+ul li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+a {
+    color: unset;
+}
+a,
+a:hover {
+  text-decoration: none;
+}
+
+input {
+    outline: none;
+}
+
+button,
+input,
+a,
+textarea {
+  outline: none;
+  font: inherit;
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    outline: none;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font: inherit;
+  margin: 0;
+  padding: 0;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.for-mobile {
+    display: none;
+}
+
+
+button {
+    cursor: pointer;
+    border: none;
+    color: inherit;
+    font: inherit;
+    text-align: inherit;
+    padding: 0;
+    background-color: inherit;
+}
+
+[class*="__container"] {
+    max-width: 186.3rem;
+    margin: 0 auto;
+}
