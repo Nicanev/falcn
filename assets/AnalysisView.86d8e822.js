@@ -1,0 +1,1 @@
+import{_ as e,o as s,c as o,a as t}from"./index.df3d663e.js";const c={},a={class:"about"},_=t("div",{class:"about__container"},"TEST",-1),n=[_];function r(i,d){return s(),o("div",a,n)}const f=e(c,[["render",r]]);export{f as default};
