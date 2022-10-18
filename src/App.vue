@@ -1,19 +1,6 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
 import TheHeader from "./components/TheHeader.vue";
-
-// import { useUserStore } from "@/stores/local";
-// import { onMounted, computed } from "vue";
-// const store = useUserStore();
-// const getIP = computed(() => {
-//   return store.getIP;
-// });
-// const users = computed(() => {
-//   return store.users;
-// });
-// onMounted(() => {
-//   store.fetchIP();
-// });
 </script>
 
 <template>
