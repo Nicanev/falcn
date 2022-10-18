@@ -1,4 +1,30 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import SpeedChart from "../components/SpeedChart.vue";
+import { useLocalStore } from "@/stores/local";
+import { onMounted, computed } from "vue";
+
+const store = useLocalStore();
+const getIP = computed(() => {
+  if (localStorage.getItem("realIndicator")) {
+    return store.getIP;
+  }
+});
+const getMac = computed(() => {
+  if (localStorage.getItem("realIndicator")) {
+    return store.getMac;
+  }
+});
+const getNetMask = computed(() => {
+  if (localStorage.getItem("realIndicator")) {
+    return store.getNetMask;
+  }
+});
+onMounted(() => {
+  store.fetchIP();
+  store.fetchMac();
+  store.fetchNetMask();
+});
+</script>
 
 <template>
   <section class="info">
@@ -8,7 +34,12 @@
         <div class="info__tables">
           <div class="info__table">
             <div class="info__subtitle">LAN</div>
-            <ul class="info__list">
+            <ul class="info__list" v-if="getIP">
+              <li>IP-адрес: {{ getIP }}</li>
+              <li>MAC-адрес: {{ getMac }}</li>
+              <li>Маска подсети: {{ getNetMask }}</li>
+            </ul>
+            <ul class="info__list" v-if="!getIP">
               <li>IP-адрес: {{ ip }}</li>
               <li>MAC-адрес: 8A:81:0F:90:1E:21</li>
               <li>Маска подсети: 255.255.255.192</li>
@@ -257,11 +288,14 @@
                   </svg>
                   НАГРУЗКА</span
                 >
-                <span class="blue">19%</span>
+                <span class="blue">{{ load }}%</span>
               </li>
             </ul>
           </div>
         </div>
+      </div>
+      <div class="info__right-side">
+        <SpeedChart />
       </div>
     </div>
   </section>
@@ -269,6 +303,13 @@
 
 <style lang="scss">
 .info {
+  &__container {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__right-side {
+    margin-right: 10rem;
+  }
   &__tables {
     display: flex;
     gap: 4rem;
@@ -326,6 +367,11 @@ export default {
     return {
       ip: "",
     };
+  },
+  computed: {
+    load() {
+      return Math.floor(Math.random() * 101);
+    },
   },
   mounted() {
     fetch("https://ipapi.co/json/")
