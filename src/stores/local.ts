@@ -4,7 +4,7 @@ export const useLocalStore = defineStore("Local", {
     state: () => ({
         ip: '',
         mac: '',
-        netMask: ''
+        netMask: '',
     }),
     getters: {
         getIP(state) {
@@ -19,34 +19,41 @@ export const useLocalStore = defineStore("Local", {
     },
     actions: {
       async fetchIP() {
-        try {
-          const data = await axios.get('http://127.0.0.1:5000')
-            this.ip = data.data.IP
+        if (localStorage.getItem("realIndicator")) { 
+          try {
+            const data = await axios.get('http://127.0.0.1:5000')
+              this.ip = data.data.IP
+            }
+            catch (error) {
+              console.log(error)
           }
-          catch (error) {
-            alert(error)
-            console.log(error)
         }
+        
       },
       async fetchMac() {
-        try {
-          const data = await axios.get('http://127.0.0.1:5000')
-            this.mac = data.data.Mac
+        if (localStorage.getItem("realIndicator"))  {
+          try {
+            const data = await axios.get('http://127.0.0.1:5000')
+              this.mac = data.data.Mac
+            }
+            catch (error) {
+              console.log(error)
           }
-          catch (error) {
-            alert(error)
-            console.log(error)
         }
+        
       },
       async fetchNetMask() {
-        try {
-          const data = await axios.get('http://127.0.0.1:5000')
-            this.netMask = data.data.Netmask
+        if (localStorage.getItem("realIndicator"))  { 
+          try {
+            const data = await axios.get('http://127.0.0.1:5000')
+              this.netMask = data.data.Netmask
+            }
+            catch (error) {
+              console.log(error)
           }
-          catch (error) {
-            alert(error)
-            console.log(error)
         }
-      }
+        
+      },
+
     },
 })
